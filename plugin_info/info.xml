@@ -3,7 +3,7 @@
     <id>trafictransilien</id>
     <name>Trafic Transilien</name>
     <description>Plugin pour afficher l'état du trafic d'une ligne du Transilien</description>
-    <icon>fa fa-train</icon>
+    <icon>fa fa-exclamation-triangle</icon>
     <licence>BSD</licence>
     <author>Frantz Benoist</author>
     <installation>Aucune</installation>
