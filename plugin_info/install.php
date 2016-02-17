@@ -18,16 +18,16 @@
 
 require_once dirname(__FILE__) . '/../../../core/php/core.inc.php';
 
-function template_install() {
+function trafictransilien_install() {
     
 }
 
-function template_update() {
+function trafictransilien_update() {
     
 }
 
 
-function template_remove() {
+function trafictransilien_remove() {
     
 }
 
