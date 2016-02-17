@@ -110,4 +110,4 @@ foreach (object::all() as $object) {
 </div>
 
 <?php include_file('desktop', 'trafictransilien', 'js', 'trafictransilien');?>
-<?php include_file('core', 'plugin.trafictransilien', 'js');?>
+<?php include_file('core', 'plugin.template', 'js');?>
