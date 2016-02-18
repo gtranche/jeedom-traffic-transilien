@@ -77,9 +77,24 @@ foreach (object::all() as $object) {
            </div>
        </div>
        <div class="form-group">
-        <label class="col-sm-3 control-label">{{Trafic param 1}}</label>
+        <label class="col-sm-3 control-label">{{Identifiant de la Ligne}}</label>
         <div class="col-sm-3">
-            <input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="city" placeholder="param1"/>
+            <select class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="ligne" placeholder="A"/>
+		<option value="A">Rer A</option>
+		<option value="B">Rer B</option>
+		<option value="C">Rer C</option>
+		<option value="D">Rer D</option>
+		<option value="E">Rer E</option>
+		<option value="H">Ligne H</option>
+		<option value="J">Ligne J</option>
+		<option value="K">Ligne K</option>
+		<option value="L">Ligne L</option>
+		<option value="N">Ligne N</option>
+		<option value="P">Ligne P</option>
+		<option value="R">Ligne R</option>
+		<option value="U">Ligne U</option>
+		<option value="4">Tram 4</option>
+        </select>
         </div>
     </div>
 </fieldset>

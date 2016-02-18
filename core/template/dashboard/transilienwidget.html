@@ -1,0 +1,30 @@
+<div class="eqLogic-widget eqLogic trafictransilien" style="width: 125px;background-color:#background_color#; padding : 0px; #style#" data-eqLogic_id="#id#" data-version="dashboard" >
+	<i class='fa fa-refresh pull-right cursor refresh' style="margin-top: 3px;margin-right: 5px;" title="Rafraîchir"></i>
+	<center><a href="#eqLink#" style="font-size : 1.2em;"><i class="fa fa-exclamation-triangle"></i> #name# </a></center>
+
+	<span class="cmd cmd-widget" data-cmd_id="#refresh_id#" style="display:none;"></span>
+
+
+	<div class="row" style="margin : 4px">
+		<center>
+		<img src="plugins/trafictransilien/doc/images/train-#ligne#.png" height="42" width="42">
+		<img src="plugins/trafictransilien/doc/images/#ligne#.png" height="42" width="42">
+		</center>
+		<center>
+		<i id="traficok" title="Trafic OK" class="fa fa-check tooltips" style="font-size : 5em;color: #00FF00;display:none;" ></i>
+		<i id="traficnok" title="Erreur de Trafic" class="fa fa-times tooltips" style="font-size : 5em;color: #FF0000;display:none;"></i>
+		</center>
+		<center>
+			#probleme#
+		</center>
+	</div>
+	<script>
+		if("#probleme#" == "Trafic normal"){
+			document.getElementById('traficok').style.display = 'block';
+			document.getElementById('traficnok').style.display = 'none';
+		} else {
+			document.getElementById('traficnok').style.display = 'block';
+			document.getElementById('traficok').style.display = 'none';
+		}
+	</script>
+</div>

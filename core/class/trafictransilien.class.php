@@ -27,12 +27,50 @@ class trafictransilien extends eqLogic {
     /*     * ***********************Methode static*************************** */
 
     /*
-     * Fonction exécutée automatiquement toutes les minutes par Jeedom
-      public static function cron() {
-
+     * Fonction exécutée automatiquement toutes les minutes par Jeedom */
+      public static function cron($_eqlogic_id = null) {
+	if($_eqlogic_id !== null){
+		$eqLogics = array(eqLogic::byId($_eqlogic_id));
+	}else{
+		$eqLogics = eqLogic::byType('trafictransilien');
+	}
+	foreach($eqLogics as $trafic) {	
+		if ($trafic->getIsEnable() == 1) {
+			log::add('trafictransilien', 'debug', 'Pull Cron pour trafictrain' );
+			//$lignetrain =  $trafictransilien->getConfiguration('train');
+			$trafic->getTrainStatus();
+			$trafic->toHtml('dashboard');
+			$trafic->refreshWidget();
+		}
+	}
+	return;
       }
-     */
-
+      public function getTrainStatus(){
+	try {
+		$ligne = $this->getConfiguration('ligne');
+		$url = "http://www.transilien.com/flux/rss/traficLigne?codeLigne=" . $ligne;
+		$xml = simplexml_load_file($url);
+		foreach($xml as $ligne){ //RSS
+		foreach($ligne as $channel){ //CHANNEL
+		// lecture des tags description du flux rss
+			$item = $channel->item;
+			if (trim($channel->description)!=""){
+				$probleme=$channel->description;
+			}
+		}
+		if(!$probleme) {
+			$probleme = "Trafic normal";
+		}
+		$problemeCmd = $this->getCmd(null, 'probleme');
+		$problemeCmd->event($probleme);
+		log::add('trafictransilien', 'debug', $probleme);
+	}
+		
+        } catch (Exception $e) {
+			return '';
+		}
+		return;
+	}
 
     /*
      * Fonction exécutée automatiquement toutes les heures par Jeedom
@@ -65,7 +103,23 @@ class trafictransilien extends eqLogic {
     }
 
     public function postSave() {
-        
+	$probleme = $this->getCmd(null, 'probleme');
+	if (!is_object($probleme)) {
+		$probleme = new trafictransilienCmd();
+		$probleme->setLogicalId('probleme');
+		$probleme->setIsVisible(1);
+                $probleme->setIsHistorized(0);
+		$probleme->setName(__('Probleme sur la ligne', __FILE__));
+	}
+        $probleme->setType('info');
+	$probleme->setSubType('string');
+	$probleme->setEventOnly(1);
+	$probleme->setEqLogic_id($this->getId());
+	$probleme->save();
+        $this->getTrainStatus();
+        $this->toHtml('dashboard');
+        $this->refreshWidget();
+
     }
 
     public function preUpdate() {
@@ -85,11 +139,33 @@ class trafictransilien extends eqLogic {
     }
 
     /*
-     * Non obligatoire mais permet de modifier l'affichage du widget si vous en avez besoin
+     * Non obligatoire mais permet de modifier l'affichage du widget si vous en avez besoin */
       public function toHtml($_version = 'dashboard') {
+			
+			$replace = array(
+			'#name#' => $this->getName(),
+			'#id#' => $this->getId(),
+			'#background_color#' => $this->getBackgroundColor(jeedom::versionAlias($_version)),
+			'#eqLink#' => $this->getLinkToConfiguration(),
+			'#ligne#' => $this->getConfiguration('ligne')
+		);
+		foreach ($this->getCmd() as $cmd) {
+			if ($cmd->getType() == 'info') {
+				$replace['#' . $cmd->getLogicalId() . '_history#'] = '';
+				$replace['#' . $cmd->getLogicalId() . '#'] = $cmd->execCmd();
+				$replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
+				$replace['#' . $cmd->getLogicalId() . '_collectDate#'] = $cmd->getCollectDate();
+				if ($cmd->getIsHistorized() == 1) {
+					$replace['#' . $cmd->getLogicalId() . '_history#'] = 'history cursor';
+				}
+			} else {
+				$replace['#' . $cmd->getLogicalId() . '_id#'] = $cmd->getId();
+			}
+		}
+	$html = template_replace($replace, getTemplate('core', $_version, 'transilienwidget', 'trafictransilien'));
+	return $html;
 
       }
-     */
 
     /*     * **********************Getteur Setteur*************************** */
 }

@@ -23,4 +23,5 @@ require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
  * 
  * 
  */
+include_file('core', 'trafictransilien', 'class', 'trafictransilien');
 ?>
