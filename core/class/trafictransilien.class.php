@@ -118,6 +118,7 @@ class trafictransilien extends eqLogic {
 	$probleme->save();
         $this->getTrainStatus();
         $this->toHtml('dashboard');
+        $this->toHtml('mobile');
         $this->refreshWidget();
 
     }
