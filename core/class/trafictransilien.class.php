@@ -48,7 +48,7 @@ class trafictransilien extends eqLogic {
       public function getTrainStatus(){
 	try {
 		$ligne = $this->getConfiguration('ligne');
-		$url = "http://www.transilien.com/flux/rss/traficLigne?codeLigne=" . $ligne;
+		$url = "http://www.transilien.com/flux/rss/traficLigne?codeLigne=" . strtolower($ligne);
 		$xml = simplexml_load_file($url);
 		foreach($xml as $ligne){ //RSS
 		foreach($ligne as $channel){ //CHANNEL
