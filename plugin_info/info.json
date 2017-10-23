@@ -1,0 +1,11 @@
+{
+        "id" : "trafictransilien",
+        "name" : "Trafic Transilien",
+        "description" : "Plugin pour afficher l'état du trafic d'une ligne du Transilien",
+        "licence" : "BSD",
+        "author" : "Frantz Benoist",
+        "require" : "1.136",
+        "category" : "organization",
+        "changelog" : "https://github.com/gtranche/jeedom-trafic-transilien/",
+        "documentation" : "https://github.com/gtranche/jeedom-trafic-transilien/"
+}
