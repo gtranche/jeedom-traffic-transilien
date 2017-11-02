@@ -2,8 +2,9 @@
 if (!isConnect('admin')) {
 	throw new Exception('{{401 - Accès non autorisé}}');
 }
-sendVarToJS('eqType', 'trafictransilien');
-$eqLogics = eqLogic::byType('trafictransilien');
+$plugin = plugin::byId('trafictransilien');
+sendVarToJS('eqType', $plugin->getId());
+$eqLogics = eqLogic::byType($plugin->getId());
 ?>
 
 <div class="row row-overflow">
@@ -69,12 +70,11 @@ foreach (object::all() as $object) {
                    </select>
                </div>
            </div>
-           <div class="form-group">
-            <label class="col-sm-3 control-label" >{{Activer}}</label>
-            <div class="col-sm-9">
-               <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Activer}}" data-l1key="isEnable" checked/>
-               <input type="checkbox" class="eqLogicAttr bootstrapSwitch" data-label-text="{{Visible}}" data-l1key="isVisible" checked/>
-           </div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label"></label>
+		<div class="col-sm-9">
+			<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
+		</div>
        </div>
        <div class="form-group">
         <label class="col-sm-3 control-label">{{Identifiant de la Ligne}}</label>
