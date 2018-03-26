@@ -79,7 +79,7 @@ foreach (object::all() as $object) {
        <div class="form-group">
         <label class="col-sm-3 control-label">{{Identifiant de la Ligne}}</label>
         <div class="col-sm-3">
-            <select class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="ligne" placeholder="A"/>
+            <select class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="ligne" placeholder="A">
 		<option value="A">Rer A</option>
 		<option value="B">Rer B</option>
 		<option value="C">Rer C</option>
