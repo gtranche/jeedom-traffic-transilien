@@ -76,10 +76,16 @@ foreach (object::all() as $object) {
 			<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isEnable" checked/>{{Activer}}</label>
 		</div>
        </div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label"></label>
+		<div class="col-sm-9">
+			<label class="checkbox-inline"><input type="checkbox" class="eqLogicAttr" data-l1key="isVisible" checked/>{{Visible}}</label>
+		</div>
+       </div>
        <div class="form-group">
         <label class="col-sm-3 control-label">{{Identifiant de la Ligne}}</label>
         <div class="col-sm-3">
-            <select class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="ligne" placeholder="A">
+            <select class="eqLogicAttr form-control" data-l1key="configuration" data-l2key="ligne">
 		<option value="A">Rer A</option>
 		<option value="B">Rer B</option>
 		<option value="C">Rer C</option>
