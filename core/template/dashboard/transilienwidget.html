@@ -11,8 +11,8 @@
 		<img src="plugins/trafictransilien/doc/images/#ligne#.png" height="42" width="42">
 		</center>
 		<center>
-		<i id="traficok" title="Trafic OK" class="fa fa-check tooltips" style="font-size : 5em;color: #00FF00;display:none;" ></i>
-		<i id="traficnok" title="Erreur de Trafic" class="fa fa-times tooltips" style="font-size : 5em;color: #FF0000;display:none;"></i>
+		<i id="traficok_#id#" title="Trafic OK" class="fa fa-check tooltips" style="font-size : 5em;color: #00FF00;display:none;" ></i>
+		<i id="traficnok_#id#" title="Erreur de Trafic" class="fa fa-times tooltips" style="font-size : 5em;color: #FF0000;display:none;"></i>
 		</center>
 		<center>
 			#probleme#
@@ -20,11 +20,11 @@
 	</div>
 	<script>
 		if("#probleme#" == "Trafic normal"){
-			document.getElementById('traficok').style.display = 'block';
-			document.getElementById('traficnok').style.display = 'none';
+			document.getElementById('traficok_#id#').style.display = 'block';
+			document.getElementById('traficnok_#id#').style.display = 'none';
 		} else {
-			document.getElementById('traficnok').style.display = 'block';
-			document.getElementById('traficok').style.display = 'none';
+			document.getElementById('traficnok_#id#').style.display = 'block';
+			document.getElementById('traficok_#id#').style.display = 'none';
 		}
 	</script>
 </div>
